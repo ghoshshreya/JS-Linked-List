@@ -33,16 +33,10 @@ class BinarySearchTree {
     if (!this.root) return 'Empty Tree';
     let currentNode = this.root;
     while (true) {
-      if (currentNode.val === val) {
-        return currentNode;
-      } else if (currentNode.val < val) {
-        currentNode = currentNode.right;
-      } else {
-        currentNode = currentNode.left;
-      }
-      if (!currentNode) {
-        return 'Not Found';
-      }
+      if (currentNode.val === val) return currentNode;
+      else if (currentNode.val < val) currentNode = currentNode.right;
+      else currentNode = currentNode.left;
+      if (!currentNode) return 'Not Found';
     }
   }
 }
@@ -59,4 +53,4 @@ let tree = new BinarySearchTree();
 tree.insert(10);
 tree.insert(15);
 tree.insert(7);
-console.log(tree.findNode(10));
+console.log(tree.findNode(9));
