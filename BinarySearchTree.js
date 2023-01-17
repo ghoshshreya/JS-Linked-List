@@ -31,14 +31,14 @@ class BinarySearchTree {
 
   findNode(val) {
     if (!this.root) return 'Empty Tree';
+    let currentNode = this.root;
     while (true) {
-      let currentNode = this.root;
       if (currentNode.val === val) {
         return currentNode;
       } else if (currentNode.val < val) {
-        currentNode = currentNode.left;
-      } else {
         currentNode = currentNode.right;
+      } else {
+        currentNode = currentNode.left;
       }
       if (!currentNode) {
         return 'Not Found';
@@ -59,4 +59,4 @@ let tree = new BinarySearchTree();
 tree.insert(10);
 tree.insert(15);
 tree.insert(7);
-console.log(tree.insert(9));
+console.log(tree.findNode(10));
