@@ -5,9 +5,9 @@ class BinarySearchTree {
 
   createBst(arr) {
     for (let x of arr) {
-      console.log(x);
-      break;
+      this.insert(x);
     }
+    return arr;
   }
 
   insert(val) {
@@ -73,10 +73,5 @@ class Node {
 
 let tree = new BinarySearchTree();
 // tree.insert(10);
-// tree.insert(6);
-// tree.insert(15);
-// tree.insert(20);
-// tree.insert(8);
-// tree.insert(3);
-tree.createBst([10, 6, 15, 20, 8, 3]);
+console.log('Creating BST', tree.createBst([10, 6, 15, 20, 8, 3]));
 console.log(tree.breadthFirstSearch(9));
