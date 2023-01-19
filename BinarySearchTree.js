@@ -85,6 +85,18 @@ class BinarySearchTree {
     traverse(currNode);
     return data;
   }
+
+  depthFirstSearchInOrder() {
+    let currNode = this.root;
+    let data = [];
+    function traverse(currNode) {
+      if (currNode.left) traverse(currNode.left);
+      data.push(currNode.val);
+      if (currNode.right) traverse(currNode.right);
+    }
+    traverse(currNode);
+    return data;
+  }
 }
 
 class Node {
@@ -96,6 +108,7 @@ class Node {
 }
 
 let tree = new BinarySearchTree();
-console.log('Creating BST', tree.createBst([10, 6, 15, 20, 8, 3]));
+console.log('Creating BST', tree.createBst([10, 6, 15, 20, 14, 8, 3]));
 console.log(tree.depthFirstSearchPreOrder());
 console.log(tree.depthFirstSearchPostOrder());
+console.log(tree.depthFirstSearchInOrder());
