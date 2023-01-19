@@ -3,7 +3,12 @@ class BinarySearchTree {
     this.root = null;
   }
 
-  createBst(arr) {}
+  createBst(arr) {
+    for (let x of arr) {
+      console.log(x);
+      break;
+    }
+  }
 
   insert(val) {
     let newNode = new Node(val);
@@ -43,15 +48,18 @@ class BinarySearchTree {
   }
 
   breadthFirstSearch() {
-    let queue = [this.root];
-    let visited = [];
-    while (queue.length) {
-      let dequeuedElem = queue.shift();
-      if (dequeuedElem.left) queue.push(dequeuedElem.left);
-      if (dequeuedElem.right) queue.push(dequeuedElem.right);
-      visited.push(dequeuedElem.val);
+    if (this.root) {
+      let visited = [];
+      let queue = [this.root];
+      while (queue.length) {
+        let dequeuedElem = queue.shift();
+        if (dequeuedElem.left) queue.push(dequeuedElem.left);
+        if (dequeuedElem.right) queue.push(dequeuedElem.right);
+        visited.push(dequeuedElem.val);
+      }
+      return visited;
     }
-    return visited;
+    return 'Empty Tree';
   }
 }
 
@@ -64,10 +72,11 @@ class Node {
 }
 
 let tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(6);
-tree.insert(15);
-tree.insert(20);
-tree.insert(8);
-tree.insert(3);
+// tree.insert(10);
+// tree.insert(6);
+// tree.insert(15);
+// tree.insert(20);
+// tree.insert(8);
+// tree.insert(3);
+tree.createBst([10, 6, 15, 20, 8, 3]);
 console.log(tree.breadthFirstSearch(9));
