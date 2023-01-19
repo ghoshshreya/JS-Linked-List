@@ -3,6 +3,8 @@ class BinarySearchTree {
     this.root = null;
   }
 
+  createBst(arr) {}
+
   insert(val) {
     let newNode = new Node(val);
     let currNode;
@@ -39,6 +41,18 @@ class BinarySearchTree {
       if (!currentNode) return 'Not Found';
     }
   }
+
+  breadthFirstSearch() {
+    let queue = [this.root];
+    let visited = [];
+    while (queue.length) {
+      let dequeuedElem = queue.shift();
+      if (dequeuedElem.left) queue.push(dequeuedElem.left);
+      if (dequeuedElem.right) queue.push(dequeuedElem.right);
+      visited.push(dequeuedElem.val);
+    }
+    return visited;
+  }
 }
 
 class Node {
@@ -51,6 +65,9 @@ class Node {
 
 let tree = new BinarySearchTree();
 tree.insert(10);
+tree.insert(6);
 tree.insert(15);
-tree.insert(7);
-console.log(tree.findNode(9));
+tree.insert(20);
+tree.insert(8);
+tree.insert(3);
+console.log(tree.breadthFirstSearch(9));
