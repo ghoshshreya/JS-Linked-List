@@ -1,4 +1,4 @@
-class BinarySearchTree {
+export class BinarySearchTree {
   constructor() {
     this.root = null;
   }
@@ -108,7 +108,7 @@ class Node {
 }
 
 let tree = new BinarySearchTree();
-console.log('Creating BST', tree.createBst([10, 6, 15, 20, 14, 8, 3]));
-console.log(tree.depthFirstSearchPreOrder());
-console.log(tree.depthFirstSearchPostOrder());
-console.log(tree.depthFirstSearchInOrder());
+// tree.createBst([10, 6, 15, 20, 8, 3])     ;
+// console.log(tree.depthFirstSearchPreOrder());
+// console.log(tree.depthFirstSearchPostOrder());
+// console.log(tree.depthFirstSearchInOrder());
