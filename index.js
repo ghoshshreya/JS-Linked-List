@@ -4,6 +4,7 @@ import './SinglyLinkedList.js';
 import './BinarySearchTree.js';
 import './BST-Problem.js';
 import './queue/queue.js';
+import './graph/bfs.js';
 
 // Write Javascript code!
 const appDiv = document.getElementById('app');
