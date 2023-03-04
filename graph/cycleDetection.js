@@ -2,7 +2,9 @@ class Graph {
   constructor(v) {
     this.V = v;
     this.adjList = new Array(v);
-    this.adjList.fill([]);
+    for (let i = 0; i < v; i++) {
+      this.adjList[i] = [];
+    }
   }
 
   addEdge(u, v) {
@@ -13,8 +15,34 @@ class Graph {
     return this.adjList;
   }
 
-  detectCycles_bfs() {
-    
+  detectCycles_bfs(source) {
+    const visitedQueue = [];
+    const queue = [source];
+    while (queue.length) {
+      let root = queue.shift();
+
+      if (!visitedQueue.length) visitedQueue.push([root, -1]);
+
+      this.adjList[root].forEach((x) => {
+        let elemExists = false;
+        for (let z of visitedQueue) {
+          if (z[0] === x) {
+            elemExists = true;
+            break;
+          }
+        }
+
+        if (!elemExists) {
+          visitedQueue.push([x, root]);
+        }
+
+        // if (x !== root) {
+        //   queue.push(x);
+        // }
+      });
+    }
+
+    console.log('Hell', visitedQueue);
   }
 }
 
@@ -29,3 +57,5 @@ graph.addEdge(3, 0);
 graph.addEdge(3, 2);
 graph.addEdge(3, 4);
 console.log(graph.edges);
+
+graph.detectCycles_bfs(0);
