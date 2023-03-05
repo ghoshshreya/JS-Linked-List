@@ -17,15 +17,23 @@ class Graph {
     let visistedQueue = new Set();
     let stack = [];
     stack.push(source);
+    let i = 0;
     while (stack.length) {
       let elem = stack.pop();
       visistedQueue.add(elem);
-      // this.adjList[elem].forEach((x) => {
-      //   if (!visistedQueue.has(x)) {
-      //     stack.push(x);
-      //   }
-      // });
+      this.adjList[elem].forEach((x) => {
+        if (!visistedQueue.has(x)) {
+          console.log(visistedQueue);
+          stack.unshift(x);
+        }
+      });
+
+      i++;
+      if (i > 10) {
+        break;
+      }
     }
+    return Array.from(visistedQueue);
   }
 
   get edges() {
