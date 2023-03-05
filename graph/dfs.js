@@ -30,6 +30,23 @@ class Graph {
     return Array.from(visistedQueue);
   }
 
+  bfs(source) {
+    let visistedQueue = {};
+    let stack = [];
+    stack.push(source);
+    let i = 0;
+    while (stack.length) {
+      let elem = stack.pop();
+      visistedQueue.add(elem);
+      this.adjList[elem].forEach((x) => {
+        if (!visistedQueue.has(x)) {
+          stack.unshift(x);
+        }
+      });
+    }
+    return Array.from(visistedQueue);
+  }
+
   get edges() {
     return this.adjList;
   }
@@ -42,4 +59,4 @@ graph.addEdge_undirected(1, 3);
 graph.addEdge_undirected(2, 3);
 
 console.log(graph.edges);
-console.log(graph.dfs(0));
+console.log(graph.dfs(2));
