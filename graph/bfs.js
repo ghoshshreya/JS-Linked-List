@@ -40,24 +40,31 @@ class Graph {
   }
 
   isCyclicBfs(sourceNode) {
-    console.log(this.adjList);
     let visitedNode = {};
     for (let x = 0; x < this.V; x++) {
-      visitedNode[x] = false;
+      visitedNode[x] = null;
     }
     let queue = [];
     queue.push([sourceNode, -1]);
-    visitedNode[sourceNode] = 1;
-    while (queue.length) {
+    let i = 0;
+    let isCyclic = false;
+    while (queue.length && i < 100) {
       let elem = queue.shift();
-      visitedNode[elem] = true;
-      console.log(elem);
-      this.adjList[elem[0]].forEach((x) => {
-        if (visitedNode[x]) return true;
-        // queue.push([x, elem]);
-      });
+      console.log(1, elem);
+      let adjList = this.adjList[elem[0]];
+      console.log(2, adjList);
+      for (let x = 0; x < adjList.length; x++) {
+        
+        if (visitedNode[adjList[x]] !== null && adjList[x] !== elem[0]) {
+          isCyclic = true;
+          break;
+        }
+        visitedNode[x] = elem[0];
+        queue.push([adjList[x], elem[0]]);
+      }
+      i++;
     }
-    return false;
+    return isCyclic;
   }
 
   dfs(sourceNode) {
@@ -65,18 +72,19 @@ class Graph {
     var visited = new Set();
     stack.unshift(sourceNode);
     visited.add(sourceNode);
-    console.log(Array.from(visited));
   }
 }
 
-let graph1 = new Graph(4);
+let graph1 = new Graph(6);
 graph1.addEdge(0, 1);
 graph1.addEdge(0, 2);
-graph1.addEdge(1, 2);
+graph1.addEdge(1, 4);
+graph1.addEdge(1, 5);
 graph1.addEdge(2, 0);
 graph1.addEdge(2, 3);
-graph1.addEdge(3, 3);
+graph1.addEdge(3, 4);
+
 let edges = graph1.edges;
-console.log('BFS', graph1.bfs(2));
-console.log('DFS', graph1.dfs(2));
+// console.log('BFS', graph1.bfs(2));
+// console.log('DFS', graph1.dfs(2));
 console.log('isCyclicBfs', graph1.isCyclicBfs(1));
