@@ -58,12 +58,17 @@ class Graph {
     let i = 0;
     while (queue.length) {
       let elem = queue.pop();
+      visitedQueue[elem[0]] = elem[1];
+
+      console.log(visitedQueue);
       this.adjList[elem[0]].forEach((x) => {
+        console.log(x);
         if (visitedQueue[x] !== null && visitedQueue[x] !== elem) {
           return true;
+        } else if (visitedQueue[x] === null) {
+          queue.push([x, elem[0]]);
         }
-        console.log(x, elem[0]);
-        queue.push([x, elem[0]]);
+        // console.log(x, elem[0]);
       });
       i++;
       if (i > 100) {
@@ -86,4 +91,4 @@ graph.addEdge_undirected(2, 3);
 
 console.log(graph.edges);
 console.log(graph.dfs(2));
-console.log(graph.isCyclic_dfs(2));
+console.log(graph.isCyclic_dfs(0));
