@@ -55,6 +55,7 @@ class Graph {
     const queue = [];
     queue.push([source, -1]);
     visitedQueue[source] = -1;
+    let i = 0;
     while (queue.length) {
       let elem = queue.pop();
       this.adjList[elem[0]].forEach((x) => {
@@ -64,6 +65,10 @@ class Graph {
         console.log(x, elem[0]);
         queue.push([x, elem[0]]);
       });
+      i++;
+      if (i > 100) {
+        break;
+      }
     }
     return false;
   }
