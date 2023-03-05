@@ -23,15 +23,9 @@ class Graph {
       visistedQueue.add(elem);
       this.adjList[elem].forEach((x) => {
         if (!visistedQueue.has(x)) {
-          console.log(visistedQueue);
           stack.unshift(x);
         }
       });
-
-      i++;
-      if (i > 10) {
-        break;
-      }
     }
     return Array.from(visistedQueue);
   }
@@ -48,4 +42,4 @@ graph.addEdge_undirected(1, 3);
 graph.addEdge_undirected(2, 3);
 
 console.log(graph.edges);
-graph.dfs(0);
+console.log(graph.dfs(0));
