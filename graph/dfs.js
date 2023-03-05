@@ -47,6 +47,27 @@ class Graph {
     return Array.from(visistedQueue);
   }
 
+  isCyclic_dfs(source) {
+    let visitedQueue = {};
+    for (let x = 0; x < this.V; x++) {
+      visitedQueue[x] = null;
+    }
+    const queue = [];
+    queue.push([source, -1]);
+    visitedQueue[source] = -1;
+    while (queue.length) {
+      let elem = queue.pop();
+      this.adjList[elem[0]].forEach((x) => {
+        if (visitedQueue[x] !== null && visitedQueue[x] !== elem) {
+          return true;
+        }
+        console.log(x, elem[0]);
+        queue.push([x, elem[0]]);
+      });
+    }
+    return false;
+  }
+
   get edges() {
     return this.adjList;
   }
@@ -60,3 +81,4 @@ graph.addEdge_undirected(2, 3);
 
 console.log(graph.edges);
 console.log(graph.dfs(2));
+console.log(graph.isCyclic_dfs(2));
